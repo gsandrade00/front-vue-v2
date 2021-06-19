@@ -1,23 +1,27 @@
+// Neste arquivo eu direciono todas as minhas rotas para cada uma das telas criadas
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+// import Home from '../views/Home.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
+    name: 'Create New Employee',
+    component: () => import('../components/pages/create-employee/CreateEmployeeComponent.vue'),
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    path: '/list-employee',
+    name: 'List Employees',
+    component: () => import('../components/pages/list-employee/ListEmployeeComponent.vue'),
   },
+  {
+    path: '/edit-employee/:id',
+    name: 'Create New Employee',
+    component: () => import('../components/pages/edit-employee/EditEmployeeComponent.vue'),
+  },
+
 ];
 
 const router = new VueRouter({
