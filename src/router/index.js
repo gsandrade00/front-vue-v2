@@ -1,6 +1,8 @@
 // Neste arquivo eu direciono todas as minhas rotas para cada uma das telas criadas
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import NProgress from 'nprogress';
+
 // import Home from '../views/Home.vue';
 
 Vue.use(VueRouter);
@@ -12,7 +14,7 @@ const routes = [
     component: () => import('../components/pages/create-employee/CreateEmployeeComponent.vue'),
   },
   {
-    path: '/list-employee',
+    path: '/list-employees',
     name: 'List Employees',
     component: () => import('../components/pages/list-employee/ListEmployeeComponent.vue'),
   },
@@ -30,4 +32,15 @@ const router = new VueRouter({
   routes,
 });
 
+router.beforeResolve((to, from, next) => {
+  if (to.name) {
+    // quando houver carregamento de uma pagina inicial, entao usar o Nprogress
+    NProgress.start();
+  }
+  next();
+});
+
+router.afterEach((to, from) => {
+  NProgress.done();
+});
 export default router;
