@@ -12,7 +12,7 @@ Dúvida! É aqui que eu defino o estilo artistico de cada tela? Ou faço isso se
             <router-link class="nav-link" to="/">Create New Employee</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/list-employee">List All Employees</router-link>
+            <router-link class="nav-link" to="/list-employees">List All Employees</router-link>
           </li>
         </ul>
       </nav>

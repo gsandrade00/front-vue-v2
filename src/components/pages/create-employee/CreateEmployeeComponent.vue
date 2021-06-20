@@ -16,51 +16,88 @@
          <!-- INICIO BLOCO: Employee Name-->
         <div class="form-group">
           <label class="font-weight-bold">Employee Name</label>
-          <input type="text"
+          <input
+           type="text"
+           id="name"
+           name="name"
            class="form-control"
            placeholder="Type seu nome aqui"
-           v-model="employee.name" required
-          >
+           v-model="employeeForm.name"
+           :class="{ 'is-invalid': isSubmitted && $v.employeeForm.name,$error}">
+           <div
+            v-if="isSubmitted && !$v.employeeForm.name.required"
+            class="invalid-feedback"> 'Employee name' field is required!
+           </div>
         </div>
         <!--FIM DO BLOCO: Employee Name-->
 
         <!-- INICIO BLOCO: Job Role-->
         <div class="form-group">
           <label class="font-weight-bold">Job Role</label>
-          <input type="text"
+          <input
+           type="text"
+           id="job-role"
+           name="job-role"
            class="form-control"
            placeholder="Type seu Job Role aqui"
-           v-model="employee.job_role" required>
+           v-model="employeeForm.job_role"
+           :class="{ 'is-invalid': isSubmitted && $v.employeeForm.job_role,$error}">
+           <div
+            v-if="isSubmitted && !$v.employeeForm.job_role.required"
+            class="invalid-feedback"> 'Job Role' field is required!
+           </div>
         </div>
         <!--FIM DO BLOCO: Job Role-->
 
         <!-- INICIO BLOCO: Salary-->
         <div class="form-group">
           <label class="font-weight-bold">Salary</label>
-          <input type="number"
+          <input
+           type="number"
+           id="salary"
+           name="salary"
            class="form-control"
            placeholder="Type seu Salary aqui"
-           v-model="employee.salary" required>
+           v-model="employeeForm.salary"
+           :class="{ 'is-invalid': isSubmitted && $v.employeeForm.salary,$error}"/>
+           <div
+            v-if="isSubmitted && !$v.employeeForm.salary.required"
+            class="invalid-feedback"> 'Salary' field is required!
+           </div>
         </div>
         <!--FIM DO BLOCO: Salary-->
 
         <!-- INICIO BLOCO: Birth-->
         <div class="form-group">
           <label class="font-weight-bold">Birth</label>
-          <input type="date"
+          <input
+           type="date"
+           id="employee_registration"
+           name="employee_registration"
            class="form-control"
            placeholder="YYYY/MM/DD"
-           v-model="birth" required>
+           v-model="employeeForm.birth"
+           :class="{ 'is-invalid': isSubmitted && $v.employeeForm.employee_birth,$error}">
+           <div
+            v-if="isSubmitted && !$v.employeeForm.birth.required"
+            class="invalid-feedback"> 'Birth' field is required!
+           </div>
         </div>
         <!--FIM DO BLOCO: Birth-->
 
         <!-- INICIO BLOCO: Employee Registration-->
         <div class="form-group">
           <label class="font-weight-bold">Employee Registration</label>
-          <input type="text"
+          <input
+           type="text"
            class="form-control"
            placeholder="Employee Registration"
-           v-model="employee.employee_registration" required>
+           v-model="employeeForm.employee_registration"
+           :class="{ 'is-invalid': isSubmitted && $v.employeeForm.employee_registration,$error}"/>
+           <div
+            v-if="isSubmitted && !$v.employeeForm.employee_registration.required"
+            class="invalid-feedback"> 'Employee Registration' field is required!
+           </div>
         </div>
         <!--FIM DO BLOCO: Employee Registration-->
         <hr>
@@ -75,21 +112,42 @@
 </template>
 
 <script>
+
+import { required } from 'vuelidate/lib/validators';
+
 export default {
   name: 'CreateEmployeeComponent',
   data() {
     return {
-      employee: {
+      employeeForm: {
         name: '',
         job_role: '',
         salary: '',
         birth: '',
         employee_registration: '',
       },
+      isSubmitted: false,
     };
   },
+  validations: {
+    employeeForm: {
+      name: { required },
+      job_role: { required },
+      salary: { required },
+      birth: { required },
+      employee_registration: { required },
+
+    },
+  },
   methods: {
-    handleSubmitForm() {}, // TODO implementar a lógica do botão
+    handleSubmitForm() {
+      this.isSubmitted = true;
+
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return;
+      }
+    }, // TO DO implementar a lógica do botão
   },
 };
 
