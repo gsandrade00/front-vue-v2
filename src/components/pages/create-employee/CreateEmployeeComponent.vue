@@ -102,7 +102,9 @@
         <!--FIM DO BLOCO: Employee Registration-->
         <hr>
         <div class="form-group">
-          <button class="btn btn-primary" type="submit">+ Employee</button>
+          <button class="btn btn-primary">
+              <font-awesome-icon :icon="['fas', 'user-plus']"/> Employee
+          </button>
         </div>
 
       </form>

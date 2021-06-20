@@ -1,17 +1,16 @@
 <template>
     <div class="row justify-contente-center">
         <h1>Edit Employee</h1>
-    </div>    
+    </div>
 </template>
 
 <script>
 export default {
-    name: 'EditEmployeeComponent',
-    data() {
-        return {
+  name: 'EditEmployeeComponent',
+  data() {
+    return {
 
-        }
-        
-    },
-}
+    };
+  },
+};
 </script>
